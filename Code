@@ -1,0 +1,35 @@
+#define BLYNK_TEMPLATE_ID "TMPL398wh_iLw"
+#define BLYNK_TEMPLATE_NAME "ggh"
+#define BLYNK_AUTH_TOKEN "pMmxHDcFIkf7l2AOLPPk3bbl3jgrBg8U"
+#define BLYNK_PRINT Serial
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+//#define m1 A0
+int a=0,b=0;
+char ssid[] = "BGM";
+char pass[] = "123456789";
+//imlokeshnivash@gmail.com
+//Thisisthepassword29@
+// Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
+void setup() 
+{
+  pinMode(A0,INPUT);
+    Blynk.begin(BLYNK_AUTH_TOKEN, ssid, pass);
+Serial.begin(9600);
+delay(500);
+}      
+void loop() 
+{
+  a=analogRead(A0);
+  if (a >= 50 && a <= 300) {
+  Serial.println(a);
+   Blynk.virtualWrite(V0,a);
+   delay(200);
+}
+    else{
+   Serial.println(b);
+   Blynk.virtualWrite(V0,b);
+   delay(200);
+    }
+
+}
